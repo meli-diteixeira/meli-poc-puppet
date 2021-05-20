@@ -13,19 +13,19 @@ Vagrant.configure("2") do |config|
         vb.memory = server["memory"]
         vb.cpus = server["cpus"]
       end
-  end
-    config.vm.provision "file", source: "~/script/*.sh" , destination: "/tmp"
+    config.vm.synced_folder "scripts/", "/tmp/scripts"
+    end
   end
   
     config.vm.provision "shell", inline: <<-SHELL
       if [ $HOSTNAME = "poc-puppet-master-0" ]; then
-        'cd /tmp && bash scripts/puppet-install-server.sh'
+        'cd /tmp/scripts && bash puppet-install-server.sh'
       fi;
       if [ $HOSTNAME = "poc-puppet-client-0" ]; then
-        'cd /tmp && bash scripts/puppet-install-agent.sh'
+        'cd /tmp/scripts && bash puppet-install-agent.sh'
       fi;
       if [ $HOSTNAME = "poc-puppet-client-1" ]; then
-        'cd /tmp && bash scripts/puppet-install-agent.sh'
+        'cd /tmp/scripts && bash puppet-install-agent.sh'
       fi;
     SHELL
 
