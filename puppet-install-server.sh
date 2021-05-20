@@ -37,10 +37,10 @@ else
     systemctl start puppetserver && \
     systemctl enable puppetserver
     puppetserver ca setup
-    status = $?
-    if ! $(exit $status); then
-      source /etc/profile.d/puppet-agent.sh
-    fi
+    # status = $?
+    # if ! $(exit $status); then
+    #   source /etc/profile.d/puppet-agent.sh
+    # fi
 
     # FW conf and restart
     sudo firewall-cmd --permanent --add-port=8140/tcp
