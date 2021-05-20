@@ -34,13 +34,13 @@ else
     sudo sed -i 's/.*\[main\].*/&\nruninterval = 3m/' /etc/puppetlabs/puppet/puppet.conf
 
     # Generate a root and intermediate signing CA for Puppet Server
+    systemctl start puppetserver && \
+    systemctl enable puppetserver
     puppetserver ca setup
     status = $?
     if ! $(exit $status); then
       source /etc/profile.d/puppet-agent.sh
     fi
-    systemctl start puppetserver && \
-    systemctl enable puppetserver
 
     # FW conf and restart
     sudo firewall-cmd --permanent --add-port=8140/tcp
