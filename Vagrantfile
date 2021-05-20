@@ -29,16 +29,5 @@ Vagrant.configure("2") do |config|
          cd /opt && bash ./puppet-install-agent.sh
       fi;
     SHELL
-
-    config.vm.provision "shell" do |s|
-      s.inline = "sudo firewall-cmd --permanent --add-port=8140/tcp && \
-                  sudo firewall-cmd --reload && \
-                  sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config"
-    end
-
-    config.vm.provision "shell" do |r|
-      r.inline = "telinit $1"
-      r.args   = ["6"]
-    end
   end
 end

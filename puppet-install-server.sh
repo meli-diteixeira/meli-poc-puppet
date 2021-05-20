@@ -34,11 +34,11 @@ else
     sudo sed -i 's/.*\[main\].*/&\nruninterval = 3m/' /etc/puppetlabs/puppet/puppet.conf
 
     # Install some initial puppet modules on Puppet Master server
-    sudo puppet module install puppetlabs-ntp
-    sudo puppet module install garethr-docker
-    sudo puppet module install puppetlabs-git
-    sudo puppet module install puppetlabs-vcsrepo
-    sudo puppet module install garystafford-fig
+    puppet module install puppetlabs-ntp
+    puppet module install garethr-docker
+    puppet module install puppetlabs-git
+    puppet module install puppetlabs-vcsrepo
+    puppet module install garystafford-fig
 
     # Generate a root and intermediate signing CA for Puppet Server
     puppetserver ca setup
@@ -48,4 +48,10 @@ else
     fi
     systemctl start puppetserver && \
     systemctl enable puppetserver
+    
+    # FW conf and restart
+    sudo firewall-cmd --permanent --add-port=8140/tcp
+    sudo firewall-cmd --reload
+    sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
+    sudo telinit 6
 fi

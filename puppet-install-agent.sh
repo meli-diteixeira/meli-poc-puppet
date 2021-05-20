@@ -34,5 +34,11 @@ else
     sudo sed -i 's/.*\[main\].*/&\nruninterval = 3m/' /etc/puppetlabs/puppet/puppet.conf
 
     # Start puppet agent on the node and make it start automatically on system boot.
-    sudo puppet resource service puppet ensure=running enable=true
+    puppet resource service puppet ensure=running enable=true
+
+    # FW conf and restart
+    sudo firewall-cmd --permanent --add-port=8140/tcp
+    sudo firewall-cmd --reload
+    sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
+    sudo telinit 6
 fi
