@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
          cd /opt && bash ./puppet-install-agent.sh
       fi;
       if [ $HOSTNAME = "poc-puppet-client-1" ]; then
-        cp /vagrant/puppet-install-agent.sh /opt/puppet-install-agent.sh
-        cd /opt && bash ./puppet-install-agent.sh
+         cp /vagrant/puppet-install-agent.sh /opt/puppet-install-agent.sh
+         cd /opt && bash ./puppet-install-agent.sh
       fi;
     SHELL
 
