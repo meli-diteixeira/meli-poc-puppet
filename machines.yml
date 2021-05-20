@@ -1,0 +1,20 @@
+- name: poc-puppet-master-0
+  cpus: 1
+  memory: 2000
+  hostname: poc-puppet-master-0
+  ip: 192.168.66.10
+  sistema: centos/7
+
+- name: poc-puppet-client-0
+  cpus: 1
+  memory: 1000 
+  hostname: poc-puppet-client-0
+  ip: 192.168.66.20
+  sistema: centos/7
+
+- name: poc-puppet-client-1
+  cpus: 1
+  memory: 1000
+  hostname: poc-puppet-client-1
+  ip: 192.168.66.21
+  sistema: centos/7
