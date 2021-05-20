@@ -25,7 +25,7 @@ else
     echo "# Host config for Puppet Master and Agent Nodes" | sudo tee --append /etc/hosts 2> /dev/null && \
     echo "192.168.66.10  poc-puppet-master-0.arqcloud.local  poc-puppet-master-0" | sudo tee --append /etc/hosts 2> /dev/null && \
     echo "192.168.66.20  poc-puppet-client-0.arqcloud.local  poc-puppet-client-0" | sudo tee --append /etc/hosts 2> /dev/null && \
-    echo "192.168.66.21  poc-puppet-client-0.arqcloud.local  poc-puppet-client-0" | sudo tee --append /etc/hosts 2> /dev/null
+    echo "192.168.66.21  poc-puppet-client-1.arqcloud.local  poc-puppet-client-1" | sudo tee --append /etc/hosts 2> /dev/null
  
     # Add optional alternate DNS names to /etc/puppetlabs/puppet/puppet.conf
     sudo sed -i 's/.*\[master\].*/&\ndns_alt_names = poc-puppet-master-0.arqcloud.local,poc-puppet-master-0/' /etc/puppetlabs/puppet/puppet.conf
