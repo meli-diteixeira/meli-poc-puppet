@@ -17,13 +17,16 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "shell", inline: <<-SHELL
       if [ $HOSTNAME = "poc-puppet-master-0" ]; then
-        'chmod +x /vagrant/scripts/*.sh && bash /vagrant/scripts/puppet-install-server.sh'
+         cp /vagrant/puppet-install-server.sh /opt/puppet-install-server.sh
+         cd /opt && bash ./puppet-install-server.sh
       fi;
       if [ $HOSTNAME = "poc-puppet-client-0" ]; then
-        'chmod +x /vagrant/scripts/*.sh && bash /vagrant/scripts/puppet-install-agent.sh'
+         cp /vagrant/puppet-install-agent.sh /opt/puppet-install-agent.sh
+         cd /opt && bash ./puppet-install-agent.sh
       fi;
       if [ $HOSTNAME = "poc-puppet-client-1" ]; then
-        'chmod +x /vagrant/scripts/*.sh && bash /vagrant/scripts/puppet-install-agent.sh'
+        cp /vagrant/puppet-install-agent.sh /opt/puppet-install-agent.sh
+        cd /opt && bash ./puppet-install-agent.sh
       fi;
     SHELL
 
